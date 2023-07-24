@@ -1,0 +1,4 @@
+wheel
+build
+ipyhton
+trimesh
