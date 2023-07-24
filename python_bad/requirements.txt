@@ -1,4 +1,9 @@
 wheel
 build
-ipyhton
+ipython
 trimesh
+numpy
+scikit_learn
+yourdfpy
+pyglet==1.5.27
+open3d
