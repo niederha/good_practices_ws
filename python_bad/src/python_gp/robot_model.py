@@ -13,7 +13,6 @@ class robotModel(ERobot):
     
     def __init__(self, df: tp.Union[str, pathlib.Path],
                  description_file: tp.Union[str, pathlib.Path]) -> None:
-
         if isinstance(df, str):
             df = pathlib.Path(df)
         if isinstance(description_file, str):
@@ -31,9 +30,17 @@ class robotModel(ERobot):
         self._visual_urdf = None
         self._visual_meshes = {}
         self._load_visual_urdf()
-        self._load_visual_meshes()
         
     def plot_robot(self, q: num.ndarray) -> None:
+        """
+        Plot the robot in a given configuration using forward kinematics.
+
+        Parameters:
+        - q (ndarray): The joint configuration of the robot.
+
+        Returns:
+        - None: This function does not return anything.
+        """
 
         # Initialize empty mesh list
         mesh_list = []
@@ -51,10 +58,16 @@ class robotModel(ERobot):
         # Display the scene
         tmsh_scene.show()
 
-
-    ### Out of role play: Do not feel obliged to read the code bellow. Do it if time, if not skip it
+    ### Do not feel obliged to read the code bellow. Do it if time, if not skip it
     #   these are just support functions to load stl files
+
     def _load_visual_urdf(self) -> None:
+        """
+        Load the visual URDF file and process its data.
+
+        Returns:
+            None
+        """
 
         # Load the file with yourdfpy (we have to write the urdf into a file to be able to load it)
         with tempfile.TemporaryDirectory() as tmpdirname:
@@ -64,8 +77,6 @@ class robotModel(ERobot):
                 tmpf.write(self.urdfStr)
             
             self._visual_urdf = URDF.load(tmp_urdf)
-            
-    def _load_visual_meshes(self) -> None:
         
         if self._visual_urdf is not None:
         

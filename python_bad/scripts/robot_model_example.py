@@ -12,7 +12,6 @@ from python_gp.robot_model import robotModel
 
 
 def main() -> None:
-
     """Gets the model of the IIWA, print it and performs FK to a random link.
     """
 
